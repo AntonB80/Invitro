@@ -1,0 +1,5 @@
+.vscode
+task/build
+task/src/test/java/Testt.java
+task/target/
+.DS_Store

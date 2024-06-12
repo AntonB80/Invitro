@@ -17,6 +17,7 @@
     <maven.compiler.source>21</maven.compiler.source>
     <maven.compiler.target>21</maven.compiler.target>
     <maven.compiler.release>21</maven.compiler.release>
+    <cucumber.version>5.5.0</cucumber.version>
     <allure.version>2.25.0</allure.version>
     <aspectj.version>1.9.21</aspectj.version>
   </properties>
@@ -97,6 +98,34 @@
         <artifactId>allure-junit5</artifactId>
         <scope>test</scope>
     </dependency>
+<!-- https://mvnrepository.com/artifact/io.cucumber/cucumber-junit-platform-engine -->
+    <dependency>
+        <groupId>io.cucumber</groupId>
+        <artifactId>cucumber-junit-platform-engine</artifactId>
+        <version>7.15.0</version> 
+        <!-- ${cucumber.version} -->
+        <scope>test</scope>
+    </dependency>
+<!-- https://mvnrepository.com/artifact/io.cucumber/cucumber-java -->
+    <dependency>
+        <groupId>io.cucumber</groupId>
+        <artifactId>cucumber-java</artifactId>
+        <version>7.15.0</version>
+    </dependency>
+<!-- https://mvnrepository.com/artifact/org.junit.platform/junit-platform-suite-api -->
+    <dependency>
+        <groupId>org.junit.platform</groupId>
+        <artifactId>junit-platform-suite-api</artifactId>
+        <version>1.10.2</version>
+        <scope>test</scope>
+    </dependency>
+    <!-- <dependency>
+        <groupId>io.cucumber</groupId>
+        <artifactId>cucumber-bom</artifactId>
+        <version>7.18.0</version>
+        <type>pom</type>
+        <scope>import</scope>
+    </dependency> -->
   </dependencies>
 
   <build>
@@ -157,6 +186,36 @@
                     <version>${aspectj.version}</version>
                 </dependency>
             </dependencies>
+        </plugin>
+        <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-antrun-plugin</artifactId>
+            <executions>
+                <execution>
+                    <!--Work around. Surefire does not use JUnit's Test Engine discovery functionality -->
+                    <id>CLI-test</id>
+                    <phase>integration-test</phase>
+                    <goals>
+                    <goal>run</goal>
+                    </goals>
+                    <configuration>
+                    <target>
+                        <echo message="Running JUnit Platform CLI"/>
+                        <java classname="org.junit.platform.console.ConsoleLauncher"
+                                fork="true"
+                                failonerror="true"
+                                newenvironment="true"
+                                maxmemory="512m"
+                                classpathref="maven.test.classpath">
+                            <arg value="--include-engine"/>
+                            <arg value="cucumber"/>
+                            <arg value="--scan-classpath"/>
+                            <arg value="${project.build.testOutputDirectory}"/>
+                        </java>
+                    </target>
+                    </configuration>
+                </execution>
+            </executions>
         </plugin>
       </plugins>
     </pluginManagement>

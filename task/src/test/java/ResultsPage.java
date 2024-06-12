@@ -5,6 +5,7 @@ import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$x;
 
 import org.openqa.selenium.interactions.Actions;
+// import com.codeborne.selenide.ClickOptions;
 import com.codeborne.selenide.SelenideElement;
 
 public class ResultsPage extends BaseTest {
@@ -87,9 +88,9 @@ public class ResultsPage extends BaseTest {
                 orderNumberField.setValue(codeINZ).pressTab();
                 // $("input[name = 'birthday']").click();
 
-                // dateField.click(ClickOptions.usingJavaScript().offset(60, 0));
+                // birthdayField.click(ClickOptions.usingJavaScript().offset(60, 0));
                 new Actions(birthdayField.getWrappedDriver())
-                                .moveToElement(birthdayField).moveByOffset(65, 0)
+                                .moveToElement(birthdayField).moveByOffset(30, 0)
                                 .click()
                                 .perform();
                 birthdayField.setValue(birthday).pressTab();

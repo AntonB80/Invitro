@@ -1,3 +1,0 @@
-mvn test -Dsurefire.includeJUnit5Engines=cucumber -Dcucumber.plugin=pretty -Dcucumber.features=task/src/test/java/step/StepPriceComparison.java
-
-Cucumber: Run Cucumber Tests

@@ -18,22 +18,23 @@
     <maven.compiler.target>21</maven.compiler.target>
     <maven.compiler.release>21</maven.compiler.release>
     <cucumber.version>5.5.0</cucumber.version>
-    <allure.version>2.25.0</allure.version>
+    <allure.version>2.29.0</allure.version>
     <aspectj.version>1.9.21</aspectj.version>
   </properties>
 
 <!-- Add allure-bom to dependency management to ensure correct versions of all the dependencies are used -->
-  <dependencyManagement>
-      <dependencies>
-          <dependency>
-              <groupId>io.qameta.allure</groupId>
-              <artifactId>allure-bom</artifactId>
-              <version>${allure.version}</version>
-              <type>pom</type>
-              <scope>import</scope>
-          </dependency>
-      </dependencies>
-  </dependencyManagement>
+<dependencyManagement>
+    <dependencies>
+        <dependency>
+            <groupId>io.qameta.allure</groupId>
+            <artifactId>allure-bom</artifactId>
+            <version>2.27.0</version>
+            <!-- <version>${allure.version}</version> -->
+            <type>pom</type>
+            <scope>import</scope>
+        </dependency>
+    </dependencies>
+</dependencyManagement>
 
   <dependencies>
 <!-- https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-java -->
@@ -93,9 +94,11 @@
         <version>2.1.0-alpha1</version>
         <scope>test</scope>
     </dependency>
+<!-- https://mvnrepository.com/artifact/io.qameta.allure/allure-junit5 -->
     <dependency>
         <groupId>io.qameta.allure</groupId>
         <artifactId>allure-junit5</artifactId>
+        <version>2.27.0</version>
         <scope>test</scope>
     </dependency>
 <!-- https://mvnrepository.com/artifact/io.cucumber/cucumber-junit-platform-engine -->

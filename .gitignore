@@ -1,6 +1,7 @@
 .vscode
 .idea
 task/allure-results
+task/allure-report
 task/build
 task/src/test/java/Testt.java
 task/target/

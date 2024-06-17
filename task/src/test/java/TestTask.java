@@ -89,4 +89,13 @@ public class TestTask extends BaseTest {
     public void selectSection(String section) {
         new SelectSection(BASE_URL, section);
     }
+
+    @ParameterizedTest
+    @ValueSource(strings = { "Врачам", "Пациентам", "Франчайзинг", "Корпоративным клиентам", "Прессе", "клиентам",
+            "другие значения" })
+    public void selectSections(String section) {
+        new SelectSection(BASE_URL).selectSection(section);
+
+    }
+
 }
